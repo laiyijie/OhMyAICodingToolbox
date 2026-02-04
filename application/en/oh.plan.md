@@ -356,11 +356,18 @@ For complex modifications, describe the modification plan in detail:
   - Command: `cd desktop && pnpm test:e2e tests/e2e/core/`
   - Key points: Ensure new features don't break existing core functionality
 
-- [ ] **T3.5**: Evaluate {{MEMORY_PATH}} updates (required)
+- [ ] **T3.5**: Intelligent Memory Update - Self-Learning (required)
   - Files: `{{MEMORY_PATH}}`
   - Key points:
-    1. Check if existing {{MEMORY_PATH}} content needs correction or deletion due to this change
-    2. Review common mistakes made during development and record in {{MEMORY_PATH}} to avoid repeating them
+    1. **Review & Correct**: Check if existing content needs correction or deletion due to this change
+    2. **Learn from Mistakes**: Record repeated errors or non-obvious solutions discovered during development
+    3. **Architecture Decisions**: Document new patterns, conventions, or tech choices made
+    4. **Gotchas & Pitfalls**: Record unexpected behaviors or edge cases discovered
+  - Update triggers (if ANY occurred):
+    - Same error made 2+ times during development
+    - Solution required significant debugging time
+    - Discovered behavior contradicting documentation
+    - Found reusable patterns that should be standardized
 
 ### 4.3 Execution Order
 
