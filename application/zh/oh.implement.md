@@ -19,7 +19,7 @@ $ARGUMENTS
 ### 1. 加载上下文
 
 1. 读取当前分支对应的 `specs/{branch-name}/spec.md` 和 `specs/{branch-name}/plan.md`
-2. 读取项目的 `CLAUDE.md` 了解项目架构和约定
+2. 读取项目的 `{{MEMORY_PATH}}` 了解项目架构和约定
 3. 解析 plan.md 中的任务列表
 
 ### 2. 任务执行
@@ -38,7 +38,7 @@ $ARGUMENTS
 每个任务完成需满足：
 - 代码已编写并保存
 - 无语法错误
-- 符合项目代码风格（参考 CLAUDE.md）
+- 符合项目代码风格（参考 {{MEMORY_PATH}}）
 
 ### 3. E2E 测试执行
 

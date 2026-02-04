@@ -19,7 +19,7 @@ Based on the task list in plan.md, execute implementation step by step until bot
 ### 1. Load Context
 
 1. Read `specs/{branch-name}/spec.md` and `specs/{branch-name}/plan.md` for the current branch
-2. Read project's `CLAUDE.md` to understand architecture and conventions
+2. Read project's `{{MEMORY_PATH}}` to understand architecture and conventions
 3. Parse the task list from plan.md
 
 ### 2. Task Execution
@@ -38,7 +38,7 @@ Execute tasks according to the phases and order defined in plan.md:
 Each task completion requires:
 - Code written and saved
 - No syntax errors
-- Follows project code style (reference CLAUDE.md)
+- Follows project code style (reference {{MEMORY_PATH}})
 
 ### 3. E2E Test Execution
 

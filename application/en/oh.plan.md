@@ -19,7 +19,7 @@ Based on the spec.md specification document, create a complete technical impleme
 ### 1. Load Context
 
 1. Read `specs/{branch-name}/spec.md` corresponding to the current branch
-2. Read project's `CLAUDE.md` to understand architecture and conventions
+2. Read project's `{{MEMORY_PATH}}` to understand architecture and conventions
 3. Explore related code files to understand existing implementation
 
 ### 2. Write Plan File
@@ -356,11 +356,11 @@ For complex modifications, describe the modification plan in detail:
   - Command: `cd desktop && pnpm test:e2e tests/e2e/core/`
   - Key points: Ensure new features don't break existing core functionality
 
-- [ ] **T3.5**: Evaluate CLAUDE.md updates (required)
-  - Files: `CLAUDE.md`
+- [ ] **T3.5**: Evaluate {{MEMORY_PATH}} updates (required)
+  - Files: `{{MEMORY_PATH}}`
   - Key points:
-    1. Check if existing CLAUDE.md content needs correction or deletion due to this change
-    2. Review common mistakes made during development and record in CLAUDE.md to avoid repeating them
+    1. Check if existing {{MEMORY_PATH}} content needs correction or deletion due to this change
+    2. Review common mistakes made during development and record in {{MEMORY_PATH}} to avoid repeating them
 
 ### 4.3 Execution Order
 
@@ -377,7 +377,7 @@ T1.1 → T1.2 → T2.1 → T2.2 → T3.1 → T3.2 → T3.3 → T3.4 → T3.5
 
 - Prioritize reusing existing code and patterns
 - Maintain consistency with project architecture
-- Reference architecture notes in CLAUDE.md
+- Reference architecture notes in {{MEMORY_PATH}}
 
 ### Data Model
 
