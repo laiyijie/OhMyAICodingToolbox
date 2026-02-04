@@ -40,7 +40,7 @@ mkdir -p specs/{number}-{short-name}
 
 ### 3. 编写规范文件
 
-在 `specs/{number}-{short-name}/spec.md` 中编写以下内容：
+在 `specs/{number}-{short-name}/spec.app.md` 中编写以下内容：
 
 ```markdown
 # {功能名称}
@@ -147,4 +147,4 @@ mkdir -p specs/{number}-{short-name}
 2. 规范文件路径
 3. 需要用户回答的澄清问题（如有）
 
-**下一步**: 用户确认规范后，运行 `/oh.plan` 创建技术方案
+**下一步**: 用户确认规范后，运行 `/oh.plan.app` 创建技术方案

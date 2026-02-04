@@ -12,19 +12,19 @@ $ARGUMENTS
 
 ## 概述
 
-基于 spec.md 规范文档，创建完整的技术实施方案。所有内容放在一个 `plan.md` 文件中。
+基于 spec.app.md 规范文档，创建完整的技术实施方案。所有内容放在一个 `plan.app.md` 文件中。
 
 ## 执行步骤
 
 ### 1. 加载上下文
 
-1. 读取当前分支对应的 `specs/{branch-name}/spec.md`
+1. 读取当前分支对应的 `specs/{branch-name}/spec.app.md`
 2. 读取项目的 `{{MEMORY_PATH}}` 了解项目架构和约定
 3. 探索相关代码文件，理解现有实现
 
 ### 2. 编写方案文件
 
-在 `specs/{branch-name}/plan.md` 中编写以下内容：
+在 `specs/{branch-name}/plan.app.md` 中编写以下内容：
 
 ```markdown
 # {功能名称} - 技术方案
@@ -343,7 +343,7 @@ DROP TABLE IF EXISTS {table_name};
 
 - [ ] **T3.1**: 编写 E2E 测试用例
   - 文件: `desktop/tests/e2e/{feature}.spec.ts`
-  - 要点: 基于 spec.md 中定义的 Golden Case
+  - 要点: 基于 spec.app.md 中定义的 Golden Case
 
 - [ ] **T3.2**: 运行并通过 E2E 测试
   - 命令: `cd desktop && pnpm test:e2e tests/e2e/{feature}.spec.ts`
@@ -411,4 +411,4 @@ T1.1 → T1.2 → T2.1 → T2.2 → T3.1 → T3.2 → T3.3 → T3.4 → T3.5
 2. 主要技术决策摘要
 3. 任务总数和阶段划分
 
-**下一步**: 用户确认方案后，运行 `/oh.implement` 执行实施
+**下一步**: 用户确认方案后，运行 `/oh.implement.app` 执行实施

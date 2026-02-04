@@ -154,8 +154,8 @@ else
 fi
 
 # Source directories (based on language)
-APPLICATION_COMMANDS="$ROOT_DIR/application/$LANG"
-TESTING_COMMANDS="$ROOT_DIR/test_project/$LANG"
+APP_COMMANDS="$ROOT_DIR/app/$LANG"
+E2E_COMMANDS="$ROOT_DIR/e2e/$LANG"
 
 # Get memory path for the selected tool
 MEMORY_PATH=$(get_memory_path "$TOOL")
@@ -180,9 +180,9 @@ install_commands() {
     mkdir -p "$commands_dir"
     print_success "  Created directory: $commands_dir"
 
-    # Copy and process application commands
-    if [ -d "$APPLICATION_COMMANDS" ]; then
-        for file in "$APPLICATION_COMMANDS"/*.md; do
+    # Copy and process app commands
+    if [ -d "$APP_COMMANDS" ]; then
+        for file in "$APP_COMMANDS"/*.md; do
             if [ -f "$file" ]; then
                 local filename=$(basename "$file")
                 local dest_path="$commands_dir/$filename"
@@ -193,12 +193,12 @@ install_commands() {
             fi
         done
     else
-        print_warning "  Warning: Source directory not found: $APPLICATION_COMMANDS"
+        print_warning "  Warning: Source directory not found: $APP_COMMANDS"
     fi
 
-    # Copy and process testing commands (if exists)
-    if [ -d "$TESTING_COMMANDS" ]; then
-        for file in "$TESTING_COMMANDS"/*.md; do
+    # Copy and process e2e commands (if exists)
+    if [ -d "$E2E_COMMANDS" ]; then
+        for file in "$E2E_COMMANDS"/*.md; do
             if [ -f "$file" ]; then
                 local filename=$(basename "$file")
                 local dest_path="$commands_dir/$filename"
@@ -236,8 +236,10 @@ print_header "Installation Complete!"
 # Show usage tips
 echo -e "${CYAN}Usage Tips:${NC}"
 if [ "$TOOL" = "Cursor" ]; then
-    echo -e "  In Cursor chat, type: oh.specify / oh.plan / oh.implement"
+    echo -e "  Application: oh.specify.app / oh.plan.app / oh.implement.app"
+    echo -e "  E2E Testing: oh.specify.e2e / oh.plan.e2e / oh.implement.e2e"
 else
-    echo -e "  In Claude Code, type: /oh.specify / /oh.plan / /oh.implement"
+    echo -e "  Application: /oh.specify.app / /oh.plan.app / /oh.implement.app"
+    echo -e "  E2E Testing: /oh.specify.e2e / /oh.plan.e2e / /oh.implement.e2e"
 fi
 echo ""

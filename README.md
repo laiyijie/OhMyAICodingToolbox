@@ -11,17 +11,34 @@ Pre-built commands/skills for AI coding tools (Claude Code, Cursor Agent) to ena
 
 ### Features
 
-- **oh.specify** - Create feature specifications with user scenarios and E2E test cases
-- **oh.plan** - Generate technical plans with architecture decisions and task lists
-- **oh.implement** - Execute plans with built-in self-learning memory updates
+#### Application Development Commands
+
+- **oh.specify.app** - Create feature specifications with user scenarios and E2E test cases
+- **oh.plan.app** - Generate technical plans with architecture decisions and task lists
+- **oh.implement.app** - Execute plans with built-in self-learning memory updates
+
+#### E2E Test Project Commands
+
+- **oh.specify.e2e** - Create test specifications with SUT description, test scope, and test cases
+- **oh.plan.e2e** - Generate test plans with framework selection, architecture design (Page Object/API Client)
+- **oh.implement.e2e** - Execute test implementation with selector strategies and wait patterns
 
 ### Development Flow
 
+**Application Development:**
 ```
-User Requirement → oh.specify → oh.plan → oh.implement → Done
-                                                ↓
-                                        Update Memory
-                                        (Self-learning)
+User Requirement → oh.specify.app → oh.plan.app → oh.implement.app → Done
+                                                          ↓
+                                                   Update Memory
+                                                   (Self-learning)
+```
+
+**E2E Test Project:**
+```
+Test Target → oh.specify.e2e → oh.plan.e2e → oh.implement.e2e → Done
+                                                    ↓
+                                            Update Memory
+                                            (Selector/Wait patterns)
 ```
 
 ### Installation
@@ -60,25 +77,42 @@ chmod +x scripts/install.sh
 
 ### Usage
 
+**Application Development:**
 ```bash
 # In Claude Code
-/oh.specify Add user login feature
-/oh.plan
-/oh.implement
+/oh.specify.app Add user login feature
+/oh.plan.app
+/oh.implement.app
 
 # In Cursor
-oh.specify Add user login feature
-oh.plan
-oh.implement
+oh.specify.app Add user login feature
+oh.plan.app
+oh.implement.app
+```
+
+**E2E Test Project:**
+```bash
+# In Claude Code
+/oh.specify.e2e Test user authentication API
+/oh.plan.e2e
+/oh.implement.e2e
+
+# In Cursor
+oh.specify.e2e Test user authentication API
+oh.plan.e2e
+oh.implement.e2e
 ```
 
 ### Directory Structure
 
 ```
 OhMyAICodingToolbox/
-├── application/
-│   ├── en/                 # English commands
-│   └── zh/                 # Chinese commands
+├── app/
+│   ├── en/                 # English commands (app development)
+│   └── zh/                 # Chinese commands (app development)
+├── e2e/
+│   ├── en/                 # English commands (E2E testing)
+│   └── zh/                 # Chinese commands (E2E testing)
 ├── scripts/
 │   ├── install.ps1         # Windows installer
 │   └── install.sh          # macOS/Linux installer
@@ -108,6 +142,7 @@ A: Yes, run the installer twice with different `-Tool` parameters.
 
 ### Version History
 
+- v1.4.0 - E2E test project workflow commands
 - v1.3.0 - Self-learning memory update mechanism
 - v1.2.0 - Tool-specific memory path support
 - v1.1.0 - Bilingual support (EN/ZH)
@@ -122,17 +157,34 @@ A: Yes, run the installer twice with different `-Tool` parameters.
 
 ### 功能特性
 
-- **oh.specify** - 创建功能规范，包含用户场景和 E2E 测试用例
-- **oh.plan** - 生成技术方案，包含架构决策和任务列表
-- **oh.implement** - 执行方案，内置自我学习记忆更新
+#### 应用开发命令
+
+- **oh.specify.app** - 创建功能规范，包含用户场景和 E2E 测试用例
+- **oh.plan.app** - 生成技术方案，包含架构决策和任务列表
+- **oh.implement.app** - 执行方案，内置自我学习记忆更新
+
+#### E2E 测试项目命令
+
+- **oh.specify.e2e** - 创建测试规范，包含被测系统描述、测试范围和测试用例
+- **oh.plan.e2e** - 生成测试方案，包含框架选型、架构设计（Page Object/API Client）
+- **oh.implement.e2e** - 执行测试实现，包含选择器策略和等待模式
 
 ### 开发流程
 
+**应用开发：**
 ```
-用户需求 → oh.specify → oh.plan → oh.implement → 完成
-                                        ↓
-                                    更新记忆
-                                   (自我学习)
+用户需求 → oh.specify.app → oh.plan.app → oh.implement.app → 完成
+                                                  ↓
+                                              更新记忆
+                                             (自我学习)
+```
+
+**E2E 测试项目：**
+```
+测试目标 → oh.specify.e2e → oh.plan.e2e → oh.implement.e2e → 完成
+                                                ↓
+                                            更新记忆
+                                        (选择器/等待模式)
 ```
 
 ### 安装
@@ -171,25 +223,42 @@ chmod +x scripts/install.sh
 
 ### 使用方法
 
+**应用开发：**
 ```bash
 # 在 Claude Code 中
-/oh.specify 添加用户登录功能
-/oh.plan
-/oh.implement
+/oh.specify.app 添加用户登录功能
+/oh.plan.app
+/oh.implement.app
 
 # 在 Cursor 中
-oh.specify 添加用户登录功能
-oh.plan
-oh.implement
+oh.specify.app 添加用户登录功能
+oh.plan.app
+oh.implement.app
+```
+
+**E2E 测试项目：**
+```bash
+# 在 Claude Code 中
+/oh.specify.e2e 测试用户认证 API
+/oh.plan.e2e
+/oh.implement.e2e
+
+# 在 Cursor 中
+oh.specify.e2e 测试用户认证 API
+oh.plan.e2e
+oh.implement.e2e
 ```
 
 ### 目录结构
 
 ```
 OhMyAICodingToolbox/
-├── application/
-│   ├── en/                 # 英文版 commands
-│   └── zh/                 # 中文版 commands
+├── app/
+│   ├── en/                 # 英文版命令（应用开发）
+│   └── zh/                 # 中文版命令（应用开发）
+├── e2e/
+│   ├── en/                 # 英文版命令（E2E 测试）
+│   └── zh/                 # 中文版命令（E2E 测试）
 ├── scripts/
 │   ├── install.ps1         # Windows 安装脚本
 │   └── install.sh          # macOS/Linux 安装脚本
@@ -219,6 +288,7 @@ A: 可以，使用不同的 `-Tool` 参数运行两次安装程序。
 
 ### 版本历史
 
+- v1.4.0 - E2E 测试项目工作流命令
 - v1.3.0 - 自我学习记忆更新机制
 - v1.2.0 - 支持工具特定的记忆路径
 - v1.1.0 - 双语支持（中/英）

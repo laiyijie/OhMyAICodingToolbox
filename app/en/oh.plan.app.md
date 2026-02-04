@@ -12,19 +12,19 @@ Before proceeding, you **must** consider the user input (if not empty).
 
 ## Overview
 
-Based on the spec.md specification document, create a complete technical implementation plan. All content goes in a single `plan.md` file.
+Based on the spec.app.md specification document, create a complete technical implementation plan. All content goes in a single `plan.app.md` file.
 
 ## Execution Steps
 
 ### 1. Load Context
 
-1. Read `specs/{branch-name}/spec.md` corresponding to the current branch
+1. Read `specs/{branch-name}/spec.app.md` corresponding to the current branch
 2. Read project's `{{MEMORY_PATH}}` to understand architecture and conventions
 3. Explore related code files to understand existing implementation
 
 ### 2. Write Plan File
 
-Write the following content in `specs/{branch-name}/plan.md`:
+Write the following content in `specs/{branch-name}/plan.app.md`:
 
 ```markdown
 # {Feature Name} - Technical Plan
@@ -343,7 +343,7 @@ For complex modifications, describe the modification plan in detail:
 
 - [ ] **T3.1**: Write E2E test cases
   - Files: `desktop/tests/e2e/{feature}.spec.ts`
-  - Key points: Based on Golden Cases defined in spec.md
+  - Key points: Based on Golden Cases defined in spec.app.md
 
 - [ ] **T3.2**: Run and pass E2E tests
   - Command: `cd desktop && pnpm test:e2e tests/e2e/{feature}.spec.ts`
@@ -411,4 +411,4 @@ Upon completion, report:
 2. Summary of key technical decisions
 3. Total task count and phase breakdown
 
-**Next Step**: After user confirms the plan, run `/oh.implement` to execute implementation
+**Next Step**: After user confirms the plan, run `/oh.implement.app` to execute implementation

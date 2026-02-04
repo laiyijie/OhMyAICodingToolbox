@@ -12,25 +12,25 @@ Before proceeding, you **must** consider the user input (if not empty).
 
 ## Overview
 
-Based on the task list in plan.md, execute implementation step by step until both core and current feature E2E test cases pass.
+Based on the task list in plan.app.md, execute implementation step by step until both core and current feature E2E test cases pass.
 
 ## Execution Steps
 
 ### 1. Load Context
 
-1. Read `specs/{branch-name}/spec.md` and `specs/{branch-name}/plan.md` for the current branch
+1. Read `specs/{branch-name}/spec.app.md` and `specs/{branch-name}/plan.app.md` for the current branch
 2. Read project's `{{MEMORY_PATH}}` to understand architecture and conventions
-3. Parse the task list from plan.md
+3. Parse the task list from plan.app.md
 
 ### 2. Task Execution
 
-Execute tasks according to the phases and order defined in plan.md:
+Execute tasks according to the phases and order defined in plan.app.md:
 
 #### Execution Rules
 
 1. **Execute by phase**: Complete all tasks in current phase before moving to the next
 2. **Follow dependencies**: Execute tasks in order based on task dependencies
-3. **Real-time updates**: Mark task as `[x]` in plan.md immediately after completion
+3. **Real-time updates**: Mark task as `[x]` in plan.app.md immediately after completion
 4. **Error handling**: Stop and report when encountering issues, wait for user instructions
 
 #### Task Completion Criteria
@@ -187,18 +187,18 @@ After completing each task phase, report:
 
 - E2E tests are the final acceptance criteria
 - When tests fail, first analyze if test code is correct
-- Ensure tests cover Golden Cases defined in spec.md
+- Ensure tests cover Golden Cases defined in spec.app.md
 - **Must implement all test cases**: Don't skip test cases designed in spec due to cost or time, these cases are key criteria for verifying functionality
 
 ## Completion Criteria
 
 Implementation is complete when all of the following conditions are met:
 
-1. **All tasks complete**: All tasks in plan.md marked as `[x]`
-2. **E2E tests pass**: All test cases defined in spec.md pass
+1. **All tasks complete**: All tasks in plan.app.md marked as `[x]`
+2. **E2E tests pass**: All test cases defined in spec.app.md pass
 3. **Memory updated**: Self-learning updates applied to `{{MEMORY_PATH}}`
 
-> **Warning**: After task completion, please return to check if all tasks in plan.md are completed (marked as `[x]`). If there are incomplete tasks, you must continue execution until all are complete!
+> **Warning**: After task completion, please return to check if all tasks in plan.app.md are completed (marked as `[x]`). If there are incomplete tasks, you must continue execution until all are complete!
 
 ## Output
 

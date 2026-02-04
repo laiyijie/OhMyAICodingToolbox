@@ -40,7 +40,7 @@ mkdir -p specs/{number}-{short-name}
 
 ### 3. Write Specification File
 
-Write the following content in `specs/{number}-{short-name}/spec.md`:
+Write the following content in `specs/{number}-{short-name}/spec.app.md`:
 
 ```markdown
 # {Feature Name}
@@ -147,4 +147,4 @@ Upon completion, report:
 2. Specification file path
 3. Clarification questions requiring user response (if any)
 
-**Next Step**: After user confirms the specification, run `/oh.plan` to create the technical plan
+**Next Step**: After user confirms the specification, run `/oh.plan.app` to create the technical plan

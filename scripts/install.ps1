@@ -76,8 +76,8 @@ $ToolDirs = @{
 
 # Source directories (based on language)
 $SourceDirs = @{
-    Application = Join-Path $RootDir "application\$Lang"
-    Testing     = Join-Path $RootDir "test_project\$Lang"
+    App = Join-Path $RootDir "app\$Lang"
+    E2E = Join-Path $RootDir "e2e\$Lang"
 }
 
 function Install-Commands {
@@ -99,9 +99,9 @@ function Install-Commands {
         Write-Host "  Created directory: $CommandsDir" -ForegroundColor Green
     }
 
-    # Copy and process application commands
-    if (Test-Path $SourceDirs.Application) {
-        Get-ChildItem -Path $SourceDirs.Application -Filter '*.md' | ForEach-Object {
+    # Copy and process app commands
+    if (Test-Path $SourceDirs.App) {
+        Get-ChildItem -Path $SourceDirs.App -Filter '*.md' | ForEach-Object {
             $DestPath = Join-Path $CommandsDir $_.Name
 
             # Read content and replace placeholder
@@ -113,12 +113,12 @@ function Install-Commands {
             Write-Host "  Installed: $($_.Name)" -ForegroundColor Green
         }
     } else {
-        Write-Host "  Warning: Source directory not found: $($SourceDirs.Application)" -ForegroundColor Yellow
+        Write-Host "  Warning: Source directory not found: $($SourceDirs.App)" -ForegroundColor Yellow
     }
 
-    # Copy and process testing commands (if exists)
-    if (Test-Path $SourceDirs.Testing) {
-        Get-ChildItem -Path $SourceDirs.Testing -Filter '*.md' -ErrorAction SilentlyContinue | ForEach-Object {
+    # Copy and process e2e commands (if exists)
+    if (Test-Path $SourceDirs.E2E) {
+        Get-ChildItem -Path $SourceDirs.E2E -Filter '*.md' -ErrorAction SilentlyContinue | ForEach-Object {
             $DestPath = Join-Path $CommandsDir $_.Name
 
             $Content = Get-Content $_.FullName -Raw -Encoding UTF8
@@ -172,8 +172,10 @@ Write-Host "========================================`n" -ForegroundColor Magenta
 # Show usage tips
 Write-Host "Usage Tips:" -ForegroundColor Cyan
 if ($Tool -eq 'Cursor') {
-    Write-Host "  In Cursor chat, type: oh.specify / oh.plan / oh.implement" -ForegroundColor White
+    Write-Host "  Application: oh.specify.app / oh.plan.app / oh.implement.app" -ForegroundColor White
+    Write-Host "  E2E Testing: oh.specify.e2e / oh.plan.e2e / oh.implement.e2e" -ForegroundColor White
 } else {
-    Write-Host "  In Claude Code, type: /oh.specify / /oh.plan / /oh.implement" -ForegroundColor White
+    Write-Host "  Application: /oh.specify.app / /oh.plan.app / /oh.implement.app" -ForegroundColor White
+    Write-Host "  E2E Testing: /oh.specify.e2e / /oh.plan.e2e / /oh.implement.e2e" -ForegroundColor White
 }
 Write-Host ""
