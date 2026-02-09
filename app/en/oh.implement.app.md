@@ -19,7 +19,7 @@ Based on the task list in plan.app.md, execute implementation step by step until
 ### 1. Load Context
 
 1. Read `specs/{branch-name}/spec.app.md` and `specs/{branch-name}/plan.app.md` for the current branch
-2. Read project's `{{MEMORY_PATH}}` to understand architecture and conventions
+2. Read project's `CLAUDE.md` to understand architecture and conventions
 3. Parse the task list from plan.app.md
 
 ### 2. Task Execution
@@ -38,7 +38,7 @@ Execute tasks according to the phases and order defined in plan.app.md:
 Each task completion requires:
 - Code written and saved
 - No syntax errors
-- Follows project code style (reference {{MEMORY_PATH}})
+- Follows project code style (reference CLAUDE.md)
 
 ### 3. E2E Test Execution
 
@@ -65,7 +65,7 @@ After all tasks complete and tests pass, perform intelligent memory update to fo
 
 #### 4.1 Memory Update Trigger Conditions
 
-Update `{{MEMORY_PATH}}` when ANY of the following occurs:
+Update `CLAUDE.md` when ANY of the following occurs:
 
 | Condition | Example | Priority |
 |-----------|---------|----------|
@@ -146,7 +146,7 @@ Organize memory updates into these categories:
 │       │                          │                          │
 │       │                          ▼                          │
 │       │              ┌───────────────────┐                  │
-│       │              │ Update {{MEMORY}} │                  │
+│       │              │ Update CLAUDE.md │                  │
 │       │              └─────────┬─────────┘                  │
 │       │                        │                            │
 │       └────────────────────────┘                            │
@@ -196,7 +196,7 @@ Implementation is complete when all of the following conditions are met:
 
 1. **All tasks complete**: All tasks in plan.app.md marked as `[x]`
 2. **E2E tests pass**: All test cases defined in spec.app.md pass
-3. **Memory updated**: Self-learning updates applied to `{{MEMORY_PATH}}`
+3. **Memory updated**: Self-learning updates applied to `CLAUDE.md`
 
 > **Warning**: After task completion, please return to check if all tasks in plan.app.md are completed (marked as `[x]`). If there are incomplete tasks, you must continue execution until all are complete!
 

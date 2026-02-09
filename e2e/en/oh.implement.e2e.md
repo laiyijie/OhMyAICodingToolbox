@@ -19,7 +19,7 @@ Based on the task list in plan.e2e.md, execute E2E test implementation step by s
 ### 1. Load Context (Required)
 
 1. Read `specs/{branch-name}/spec.e2e.md` and `specs/{branch-name}/plan.e2e.md` for the current branch
-2. Read project's `{{MEMORY_PATH}}` to understand architecture and conventions
+2. Read project's `CLAUDE.md` to understand architecture and conventions
 3. Parse the task list from plan.e2e.md
 
 ### 2. Task Execution
@@ -70,7 +70,7 @@ After all tasks complete and tests pass, perform intelligent memory update.
 
 #### 4.1 Memory Update Trigger Conditions
 
-Update `{{MEMORY_PATH}}` when ANY of the following occurs:
+Update `CLAUDE.md` when ANY of the following occurs:
 
 | Condition | Priority |
 |-----------|----------|
@@ -129,7 +129,7 @@ Implementation is complete when all of the following conditions are met:
 1. **All tasks complete**: All tasks in plan.e2e.md marked as `[x]`
 2. **New tests pass**: All test cases defined in spec.e2e.md pass
 3. **Regression tests pass**: Entire existing test suite passes
-4. **Memory updated**: Self-learning updates applied to `{{MEMORY_PATH}}`
+4. **Memory updated**: Self-learning updates applied to `CLAUDE.md`
 
 > **Warning**: After task completion, please return to check if all tasks in plan.e2e.md are completed (marked as `[x]`). If there are incomplete tasks, you must continue execution until all are complete!
 

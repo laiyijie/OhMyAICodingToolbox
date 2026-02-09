@@ -5,7 +5,7 @@
 ## 项目约定
 
 - 所有 command 使用 `oh.` 前缀
-- 使用 `{{MEMORY_PATH}}` 占位符引用工具特定的记忆路径
+- 使用 `CLAUDE.md` 作为项目记忆文件（Cursor 和 Claude Code 都会自动加载）
 
 ## Command 设计原则
 

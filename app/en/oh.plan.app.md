@@ -19,7 +19,7 @@ Based on the spec.app.md specification document, create a complete technical imp
 ### 1. Load Context
 
 1. Read `specs/{branch-name}/spec.app.md` corresponding to the current branch
-2. Read project's `{{MEMORY_PATH}}` to understand architecture and conventions
+2. Read project's `CLAUDE.md` to understand architecture and conventions
 3. Explore related code files to understand existing implementation
 
 ### 2. Write Plan File
@@ -357,7 +357,7 @@ For complex modifications, describe the modification plan in detail:
   - Key points: Ensure new features don't break existing core functionality
 
 - [ ] **T3.5**: Intelligent Memory Update - Self-Learning (required)
-  - Files: `{{MEMORY_PATH}}`
+  - Files: `CLAUDE.md`
   - Key points:
     1. **Review & Correct**: Check if existing content needs correction or deletion due to this change
     2. **Learn from Mistakes**: Record repeated errors or non-obvious solutions discovered during development
@@ -384,7 +384,7 @@ T1.1 → T1.2 → T2.1 → T2.2 → T3.1 → T3.2 → T3.3 → T3.4 → T3.5
 
 - Prioritize reusing existing code and patterns
 - Maintain consistency with project architecture
-- Reference architecture notes in {{MEMORY_PATH}}
+- Reference architecture notes in CLAUDE.md
 
 ### Data Model
 

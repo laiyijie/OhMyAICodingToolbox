@@ -19,7 +19,7 @@ Based on the spec.e2e.md test specification document, combined with the project'
 ### 1. Load Context (Required)
 
 1. Read `specs/{branch-name}/spec.e2e.md` for the current branch
-2. Read project's `{{MEMORY_PATH}}` to understand architecture and conventions
+2. Read project's `CLAUDE.md` to understand architecture and conventions
 3. **Explore the project's existing test code** to understand:
    - Test framework and version being used
    - Existing test architecture patterns (Page Object / API Client / other)
@@ -136,7 +136,7 @@ Describe test data preparation and cleanup strategy:
   - Key points: Ensure new code doesn't break existing tests
 
 - [ ] **T3.3**: Intelligent Memory Update - Self-Learning (Required)
-  - Files: `{{MEMORY_PATH}}`
+  - Files: `CLAUDE.md`
   - Key points: Record selector strategies, wait patterns, framework gotchas, etc.
 
 ### 4.2 Execution Order

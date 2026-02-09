@@ -16,19 +16,10 @@ LANG="${3:-en}"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 
-# Memory path mapping for different tools
-get_memory_path() {
-    case "$1" in
-        Claude) echo "CLAUDE.md" ;;
-        Cursor) echo ".cursor/rules/memory.mdc" ;;
-    esac
-}
-
 # Color definitions
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
-GRAY='\033[0;90m'
 MAGENTA='\033[0;35m'
 CYAN='\033[0;36m'
 NC='\033[0m' # No Color
@@ -48,10 +39,6 @@ print_warning() {
 
 print_error() {
     echo -e "${RED}$1${NC}"
-}
-
-print_gray() {
-    echo -e "${GRAY}$1${NC}"
 }
 
 print_header() {
@@ -157,9 +144,6 @@ fi
 APP_COMMANDS="$ROOT_DIR/app/$LANG"
 E2E_COMMANDS="$ROOT_DIR/e2e/$LANG"
 
-# Get memory path for the selected tool
-MEMORY_PATH=$(get_memory_path "$TOOL")
-
 # Install commands
 install_commands() {
     local tool_name=$1
@@ -173,22 +157,20 @@ install_commands() {
     fi
 
     print_info "Installing $tool_name commands ($lang_label) to $target_dir ..."
-    print_gray "  Memory path: $MEMORY_PATH"
 
     # Create target directory
     local commands_dir="$target_dir/commands"
     mkdir -p "$commands_dir"
     print_success "  Created directory: $commands_dir"
 
-    # Copy and process app commands
+    # Copy app commands
     if [ -d "$APP_COMMANDS" ]; then
         for file in "$APP_COMMANDS"/*.md; do
             if [ -f "$file" ]; then
                 local filename=$(basename "$file")
                 local dest_path="$commands_dir/$filename"
 
-                # Read content, replace placeholder, and write to destination
-                sed "s|{{MEMORY_PATH}}|$MEMORY_PATH|g" "$file" > "$dest_path"
+                cp "$file" "$dest_path"
                 print_success "  Installed: $filename"
             fi
         done
@@ -196,14 +178,14 @@ install_commands() {
         print_warning "  Warning: Source directory not found: $APP_COMMANDS"
     fi
 
-    # Copy and process e2e commands (if exists)
+    # Copy e2e commands (if exists)
     if [ -d "$E2E_COMMANDS" ]; then
         for file in "$E2E_COMMANDS"/*.md; do
             if [ -f "$file" ]; then
                 local filename=$(basename "$file")
                 local dest_path="$commands_dir/$filename"
 
-                sed "s|{{MEMORY_PATH}}|$MEMORY_PATH|g" "$file" > "$dest_path"
+                cp "$file" "$dest_path"
                 print_success "  Installed: $filename"
             fi
         done
@@ -219,7 +201,6 @@ echo "Configuration:"
 echo "  Tool: $TOOL"
 echo "  Scope: $SCOPE"
 echo "  Language: $LANG"
-echo "  Memory Path: $MEMORY_PATH"
 echo ""
 
 print_header "Installing for $TOOL ($SCOPE level)"
