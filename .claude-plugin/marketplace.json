@@ -1,0 +1,17 @@
+{
+  "name": "ohmy-toolbox",
+  "owner": {
+    "name": "laiyijie"
+  },
+  "metadata": {
+    "description": "Structured AI coding workflows: specify → plan → implement with subagent-orchestrated TDD"
+  },
+  "plugins": [
+    {
+      "name": "ohmy",
+      "source": "./plugins/ohmy",
+      "description": "App development workflow: specify → plan → implement with self-learning memory updates",
+      "version": "1.0.0"
+    }
+  ]
+}
