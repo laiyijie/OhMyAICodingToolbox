@@ -1,0 +1,9 @@
+{
+  "name": "app-dev",
+  "description": "App development workflow: specify → plan → implement with self-learning memory updates",
+  "version": "1.0.0",
+  "author": {
+    "name": "OhMyAICodingToolbox"
+  },
+  "homepage": "https://github.com/yijiel/OhMyAICodingToolbox"
+}

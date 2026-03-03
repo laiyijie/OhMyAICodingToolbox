@@ -147,4 +147,4 @@ Upon completion, report:
 2. Specification file path
 3. Clarification questions requiring user response (if any)
 
-**Next Step**: After user confirms the specification, run `/oh.plan.app` to create the technical plan
+**Next Step**: After user confirms the specification, run `/app-dev:oh.plan.app` to create the technical plan

@@ -76,58 +76,20 @@ Update `CLAUDE.md` when ANY of the following occurs:
 | **Outdated information** | Existing memory content no longer accurate | High |
 | **New best practices** | Better approaches discovered during implementation | Medium |
 
-#### 4.2 Memory Content Categories
-
-Organize memory updates into these categories:
-
-```markdown
-## Project Architecture
-- Tech stack and versions
-- Directory structure conventions
-- Key design patterns used
-
-## Development Conventions
-- Coding style rules
-- Naming conventions
-- File organization patterns
-
-## Common Pitfalls (Auto-learned)
-- [Date] Issue: {description}
-  - Symptom: {what went wrong}
-  - Root cause: {why it happened}
-  - Solution: {how to fix/avoid}
-
-## API & Integration Notes
-- External service quirks
-- Authentication patterns
-- Data format requirements
-
-## Testing Guidelines
-- Test file locations
-- Test commands
-- Common test failures and fixes
-
-## Performance Considerations
-- Known bottlenecks
-- Optimization techniques used
-```
-
-#### 4.3 Memory Update Principles
+#### 4.2 Memory Update Principles
 
 **DO update memory when:**
 - You made a mistake that cost significant debugging time
 - You discovered behavior that contradicts documentation
 - You found a pattern that should be reused
 - Existing memory content is wrong or outdated
-- You learned something project-specific that future development needs
 
 **DO NOT update memory with:**
-- General programming knowledge (e.g., "use async/await for promises")
+- General programming knowledge
 - One-time fixes unlikely to recur
-- Personal preferences without team consensus
 - Temporary workarounds that should be properly fixed
 
-#### 4.4 Self-Learning Loop
+#### 4.3 Self-Learning Loop
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -146,23 +108,13 @@ Organize memory updates into these categories:
 │       │                          │                          │
 │       │                          ▼                          │
 │       │              ┌───────────────────┐                  │
-│       │              │ Update CLAUDE.md │                  │
+│       │              │ Update CLAUDE.md  │                  │
 │       │              └─────────┬─────────┘                  │
 │       │                        │                            │
 │       └────────────────────────┘                            │
 │            (Next cycle benefits from learned knowledge)     │
 └─────────────────────────────────────────────────────────────┘
 ```
-
-#### 4.5 Memory Update Checklist
-
-Before completing implementation, verify:
-
-- [ ] **Review development journey**: What mistakes were made? What took longer than expected?
-- [ ] **Check for repeated patterns**: Did similar issues occur multiple times?
-- [ ] **Validate existing memory**: Is any current content now incorrect?
-- [ ] **Document non-obvious solutions**: Would another developer struggle with the same issue?
-- [ ] **Record architecture decisions**: Any new patterns that should be standard?
 
 ### 5. Progress Report
 
@@ -188,7 +140,7 @@ After completing each task phase, report:
 - E2E tests are the final acceptance criteria
 - When tests fail, first analyze if test code is correct
 - Ensure tests cover Golden Cases defined in spec.app.md
-- **Must implement all test cases**: Don't skip test cases designed in spec due to cost or time, these cases are key criteria for verifying functionality
+- **Must implement all test cases**: Don't skip test cases designed in spec due to cost or time
 
 ## Completion Criteria
 
