@@ -6,13 +6,13 @@ A collection of Claude Code plugins that bring structured AI-assisted developmen
 
 ### ohmy — App Development Workflow
 
-A 3-phase workflow for building features with AI: specify → plan → implement.
+A 3-phase workflow for building features with AI: specify → plan → implement. Uses subagents for TDD-first test writing, per-task spec-compliance review, and final QA.
 
 | Command | What it does |
 |---------|-------------|
 | `/ohmy:specify.app` | Creates a feature branch and `specs/{branch}/spec.app.md` — user scenarios, E2E golden test cases, and clarification questions |
-| `/ohmy:plan.app` | Reads the spec, explores the codebase, writes `specs/{branch}/plan.app.md` — architecture analysis, tech decisions, data models, and a phased task list |
-| `/ohmy:implement.app` | Executes the plan task-by-task, runs E2E tests, and updates `CLAUDE.md` with lessons learned |
+| `/ohmy:plan.app` | Reads the spec, explores the codebase, writes `specs/{branch}/plan.app.md` — architecture analysis, tech decisions, data models, and a phased task list with acceptance criteria |
+| `/ohmy:implement.app` | Orchestrates implementation: TEST-WRITER subagent writes failing E2E tests (TDD), main agent implements with per-task REVIEWER subagent, QA subagent runs final test suite, then updates `CLAUDE.md` with lessons learned |
 
 ## Install
 
