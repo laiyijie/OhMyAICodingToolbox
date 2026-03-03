@@ -139,19 +139,30 @@ Describe state lifecycle and transitions:
 
 ### 4.1 Task Overview
 
-| Phase | Task Count | Estimated Effort |
-|-------|------------|------------------|
+| Phase | Task Count | Description |
+|-------|------------|-------------|
+| E2E Test Scaffolding | 1 | TEST-WRITER subagent writes failing tests |
 | Preparation | {n} | {description} |
 | Core Implementation | {n} | {description} |
-| Testing | {n} + 3 (required) | {description} |
+| Final QA | 3 (required) | QA subagent + self-learning |
 
 ### 4.2 Detailed Tasks
+
+#### Phase 0: E2E Test Scaffolding (before implementation)
+
+- [ ] **T0.1**: Write failing E2E tests from golden cases
+  - Executor: TEST-WRITER subagent
+  - Source: spec.app.md golden cases + CLAUDE.md test conventions
+  - Key points: Tests must fail (RED) before implementation begins
 
 #### Phase 1: Preparation
 
 - [ ] **T1.1**: {task description}
   - Files: `{involved files}`
   - Key points: {implementation points}
+  - **Acceptance criteria**:
+    - {observable behavior 1}
+    - {observable behavior 2}
 
 #### Phase 2: Core Implementation
 
@@ -159,29 +170,28 @@ Describe state lifecycle and transitions:
   - Files: `{involved files}`
   - Key points: {implementation points}
   - Dependencies: T1.1
+  - **Acceptance criteria**:
+    - {observable behavior 1}
+    - {observable behavior 2}
 
-#### Phase 3: E2E Testing
+#### Phase 3: Final QA
 
-- [ ] **T3.1**: Write E2E test cases
-  - Files: `{test file path}`
-  - Key points: Based on Golden Cases defined in spec.app.md
+- [ ] **T3.1**: Run full E2E test suite
+  - Executor: QA subagent
 
-- [ ] **T3.2**: Run and pass E2E tests
+- [ ] **T3.2**: Verify core tests not broken
+  - Executor: QA subagent
 
-- [ ] **T3.3**: Evaluate Core test case updates (required)
-  - Key points: Evaluate whether to add new feature test cases to core suite
-
-- [ ] **T3.4**: Pass all Core E2E tests (required)
-  - Key points: Ensure new features don't break existing core functionality
-
-- [ ] **T3.5**: Intelligent Memory Update - Self-Learning (required)
+- [ ] **T3.3**: Intelligent Memory Update - Self-Learning (required)
   - Files: `CLAUDE.md`
-  - Key points: Review & correct existing content, record lessons learned
+  - Key points:
+    - Review & correct existing content, record lessons learned
+    - Update acceptance criteria principles based on reviewer findings
 
 ### 4.3 Execution Order
 
 ```
-T1.1 → T2.1 → T3.1 → T3.2 → T3.3 → T3.4 → T3.5
+T0.1 → T1.x → T2.x (with REVIEWER subagent per task) → T3.x
 ```
 ```
 
@@ -209,7 +219,12 @@ T1.1 → T2.1 → T3.1 → T3.2 → T3.3 → T3.4 → T3.5
 
 - Appropriate task granularity (completable in 2-4 hours)
 - Clear dependencies
-- Include testing tasks
+- Every implementation task must include **acceptance criteria**:
+  - Observable behavior only (what the system does, not how)
+  - One assertion per bullet
+  - Include boundary conditions when relevant
+  - Testable by a reviewer who hasn't seen the code
+- Phase 0 (test scaffolding) and Phase 3 (QA) are required
 
 ## Output
 
