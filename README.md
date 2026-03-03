@@ -11,7 +11,7 @@ A 3-phase workflow for building features with AI: specify → plan → implement
 | Command | What it does |
 |---------|-------------|
 | `/ohmy:specify.app` | Creates a feature branch and `specs/{branch}/spec.app.md` — user scenarios, E2E golden test cases, and clarification questions |
-| `/ohmy:plan.app` | Reads the spec, explores the codebase, writes `specs/{branch}/plan.app.md` — architecture analysis, tech decisions, data models, and a phased task list with acceptance criteria |
+| `/ohmy:plan.app` | Dispatches parallel research subagents (architecture, dependencies, test patterns), synthesizes findings into `specs/{branch}/plan.app.md`, then validates with a plan-reviewer subagent |
 | `/ohmy:implement.app` | Orchestrates implementation: TEST-WRITER subagent writes failing E2E tests (TDD), main agent implements with per-task REVIEWER subagent, QA subagent runs final test suite, then updates `CLAUDE.md` with lessons learned |
 
 ## Install
