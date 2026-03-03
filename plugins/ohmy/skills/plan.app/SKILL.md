@@ -1,5 +1,5 @@
 ---
-description: Create technical plan with research, data models, file modification plan, and task list
+description: Create technical plan with parallel research, data models, file modification plan, and task list
 ---
 
 ## User Input
@@ -12,7 +12,16 @@ Before proceeding, you **must** consider the user input (if not empty).
 
 ## Overview
 
-Based on the spec.app.md specification document, create a complete technical implementation plan. All content goes in a single `plan.app.md` file.
+Based on the spec.app.md specification document, create a complete technical implementation plan. Three parallel research subagents (ARCH-EXPLORER, DEPS-EXPLORER, TEST-EXPLORER) explore the codebase first, then the main agent synthesizes their findings into `plan.app.md`. A PLAN-REVIEWER subagent validates the plan against the spec before delivery.
+
+## Subagent Roles
+
+| Role | When | Does | Prompt Template |
+|------|------|------|-----------------|
+| ARCH-EXPLORER | Phase 1, parallel research | Explores architecture: related modules, design patterns, reusable components, similar implementations | `./arch-explorer-prompt.md` |
+| DEPS-EXPLORER | Phase 1, parallel research | Explores dependencies: existing packages, external APIs, integration points, potential conflicts | `./deps-explorer-prompt.md` |
+| TEST-EXPLORER | Phase 1, parallel research | Explores test infrastructure: framework, conventions, E2E patterns, test utilities | `./test-explorer-prompt.md` |
+| PLAN-REVIEWER | Phase 3, after plan is written | Validates spec-plan alignment, dependency correctness, acceptance criteria quality, file paths, research utilization | `./plan-reviewer-prompt.md` |
 
 ## Execution Steps
 
@@ -20,18 +29,44 @@ Based on the spec.app.md specification document, create a complete technical imp
 
 1. Read `specs/{branch-name}/spec.app.md` corresponding to the current branch
 2. Read project's `CLAUDE.md` to understand architecture and conventions
-3. Explore related code files to understand existing implementation
 
-### 2. Write Plan File
+### 2. Dispatch Parallel Research (Phase 1)
 
-Write the following content in `specs/{branch-name}/plan.app.md`:
+Dispatch all three research subagents **simultaneously** using the Agent tool:
 
-```markdown
+1. **ARCH-EXPLORER** — dispatch using the template in `./arch-explorer-prompt.md`:
+   - Provide **full text** of section 1 (User Scenarios) from spec.app.md
+   - Provide **full text** of CLAUDE.md
+   - Do NOT provide file paths for the subagent to read — paste everything it needs
+
+2. **DEPS-EXPLORER** — dispatch using the template in `./deps-explorer-prompt.md`:
+   - Provide **full text** of section 1 (User Scenarios) from spec.app.md
+   - Provide **full text** of CLAUDE.md
+   - Do NOT provide file paths for the subagent to read — paste everything it needs
+
+3. **TEST-EXPLORER** — dispatch using the template in `./test-explorer-prompt.md`:
+   - Provide **full text** of section 1 (User Scenarios) from spec.app.md
+   - Provide **full text** of CLAUDE.md
+   - Do NOT provide file paths for the subagent to read — paste everything it needs
+
+**After all three subagents return:**
+
+1. Collect each subagent's report
+2. Note any contradictions between reports (e.g., ARCH-EXPLORER says "use pattern X" but DEPS-EXPLORER flags a version conflict with it)
+3. If a subagent returned unclear or incomplete results, re-dispatch it with clarified instructions (max 1 retry per subagent)
+
+### 3. Synthesize & Write Plan File (Phase 2)
+
+Synthesize findings from all three research reports and write `specs/{branch-name}/plan.app.md`:
+
+````markdown
 # {Feature Name} - Technical Plan
 
 ## 1. Technical Research and Solution Selection
 
 ### 1.1 Existing Architecture Analysis
+
+*(Informed by ARCH-EXPLORER report)*
 
 Analyze existing code related to this feature:
 - Related modules: {list related modules/files}
@@ -193,13 +228,36 @@ Describe state lifecycle and transitions:
 ```
 T0.1 → T1.x → T2.x (with REVIEWER subagent per task) → T3.x
 ```
-```
+````
+
+### 4. Dispatch Plan Review (Phase 3)
+
+Dispatch a PLAN-REVIEWER subagent using the template in `./plan-reviewer-prompt.md`:
+
+- Provide **full text** of spec.app.md
+- Provide **full text** of the plan.app.md just written
+- Provide **full text** of all three research reports (ARCH-EXPLORER, DEPS-EXPLORER, TEST-EXPLORER)
+- Do NOT provide file paths for the subagent to read — paste everything it needs
+
+**After the subagent returns:**
+
+1. If **APPROVED** → proceed to Output
+2. If **REVISIONS NEEDED** → apply the reviewer's suggested fixes to plan.app.md, then re-dispatch the PLAN-REVIEWER
+3. **Max 3 review rounds** → if still not approved after 3 rounds, present the remaining issues to the user and ask for guidance
+
+## Subagent Dispatch Principles
+
+1. **Full text, not file paths**: Paste everything the subagent needs into the prompt. Subagents should not need to read spec or plan files.
+2. **Parallel research**: All three Phase 1 subagents are dispatched simultaneously — they are independent of each other.
+3. **"Before You Begin"**: All subagent prompts include a section for asking questions. Answer them before letting the subagent proceed.
+4. **Independent verification**: The PLAN-REVIEWER reads actual file paths and cross-references the spec — it never trusts the plan at face value.
 
 ## Plan Writing Principles
 
 ### Technical Research
 
-- Prioritize reusing existing code and patterns
+- Incorporate findings from ARCH-EXPLORER, DEPS-EXPLORER, and TEST-EXPLORER reports
+- Prioritize reusing existing code and patterns identified by research subagents
 - Maintain consistency with project architecture
 - Reference architecture notes in CLAUDE.md
 
@@ -226,11 +284,20 @@ T0.1 → T1.x → T2.x (with REVIEWER subagent per task) → T3.x
   - Testable by a reviewer who hasn't seen the code
 - Phase 0 (test scaffolding) and Phase 3 (QA) are required
 
+## Guardrails
+
+- **Unclear research results** → Ask user for guidance before synthesizing a plan based on ambiguous findings
+- **Reviewer inconclusive** → Flag the specific sections and ask user whether to proceed or revise
+- **3 review failures** → Stop and escalate to user; don't loop forever
+- **Research contradicts CLAUDE.md** → Prioritize CLAUDE.md; note the contradiction in the plan for user awareness
+
 ## Output
 
 Upon completion, report:
 1. Plan file path
-2. Summary of key technical decisions
-3. Total task count and phase breakdown
+2. Research highlights (key findings from each subagent)
+3. Summary of key technical decisions
+4. Total task count and phase breakdown
+5. Plan review result (APPROVED or issues remaining)
 
 **Next Step**: After user confirms the plan, run `/ohmy:implement.app` to execute implementation
