@@ -218,4 +218,4 @@ Upon completion, report:
 2. Summary of key technical decisions
 3. Total task count and phase breakdown
 
-**Next Step**: After user confirms the plan, run `/app-dev:oh.implement.app` to execute implementation
+**Next Step**: After user confirms the plan, run `/ohmy:implement.app` to execute implementation
