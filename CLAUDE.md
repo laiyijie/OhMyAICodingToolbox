@@ -33,7 +33,10 @@ The `ohmy` plugin implements a 3-phase feature development workflow with subagen
 
 1. **`specify.app`** — Creates a git branch and `specs/{branch-name}/spec.app.md` with user scenarios, E2E golden test cases, and clarification questions (max 3).
 
-2. **`plan.app`** — Reads `spec.app.md` + `CLAUDE.md`, explores the codebase, writes `specs/{branch-name}/plan.app.md` with architecture analysis, technology decisions, data models, file modification table, and a phased task list. Each implementation task includes **acceptance criteria** for the reviewer subagent.
+2. **`plan.app`** — Orchestrates planning using subagents:
+   - **Phase 1**: Dispatches ARCH-EXPLORER, DEPS-EXPLORER, and TEST-EXPLORER subagents in parallel to research architecture, dependencies, and test patterns
+   - **Phase 2**: Main agent synthesizes research and writes `specs/{branch-name}/plan.app.md` with architecture analysis, technology decisions, data models, file modification table, and a phased task list with acceptance criteria
+   - **Phase 3**: Dispatches a PLAN-REVIEWER subagent to verify spec alignment, criteria quality, and feasibility (max 3 rounds)
 
 3. **`implement.app`** — Orchestrates implementation using subagents:
    - **Phase 0**: Dispatches a TEST-WRITER subagent to write failing E2E tests from spec golden cases (TDD — RED state)
@@ -45,6 +48,10 @@ The `ohmy` plugin implements a 3-phase feature development workflow with subagen
 
 | Role | Dispatched by | Purpose |
 |------|---------------|---------|
+| ARCH-EXPLORER | plan.app (Phase 1, parallel) | Explores existing architecture, design patterns, reusable components |
+| DEPS-EXPLORER | plan.app (Phase 1, parallel) | Explores dependencies, APIs, integration points, potential conflicts |
+| TEST-EXPLORER | plan.app (Phase 1, parallel) | Explores test framework, conventions, fixtures, utilities |
+| PLAN-REVIEWER | plan.app (Phase 3) | Verifies spec-plan alignment, acceptance criteria quality, feasibility |
 | TEST-WRITER | implement.app (Phase 0) | Explores project test patterns, writes failing E2E tests from spec golden cases |
 | REVIEWER | implement.app (per task) | Verifies each acceptance criterion against actual code with file:line evidence |
 | QA | implement.app (Phase 3) | Runs full E2E + regression test suite, reports pass/fail (never fixes code) |
