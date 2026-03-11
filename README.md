@@ -2,6 +2,16 @@
 
 A collection of Claude Code plugins that bring structured AI-assisted development workflows to any project.
 
+## Key Features
+
+### Test-Case-First Design
+
+Every feature starts with test cases, not code. During the specify phase, E2E golden test cases are written upfront as part of the spec. During implementation, a dedicated TEST-WRITER subagent translates these into failing tests before any production code is touched (TDD red-green cycle). A separate QA subagent runs the full suite at the end — the feature isn't done until all tests pass.
+
+### Self-Learning Loop
+
+At the end of every implementation cycle, the workflow automatically updates your project's `CLAUDE.md` with lessons learned — repeated mistakes, non-obvious solutions, architecture decisions, discovered gotchas, and weak acceptance criteria that caused reviewer confusion. This means each feature you build makes the next one smarter. Knowledge accumulates across sessions, not just within them.
+
 ## Plugins
 
 ### ohmy — App Development Workflow
