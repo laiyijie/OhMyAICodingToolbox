@@ -16,16 +16,26 @@ A 3-phase workflow for building features with AI: specify → plan → implement
 
 ## Install
 
-### Option 1: Local session (no install required)
+### Option 1: Install from GitHub
 
-```bash
-claude --plugin-dir /path/to/OhMyAICodingToolbox/plugins/ohmy
+Inside Claude Code, run:
+
+```
+/plugin marketplace add laiyijie/OhMyAICodingToolbox
+/plugin install ohmy@laiyijie-OhMyAICodingToolbox
 ```
 
-### Option 2: Install from GitHub
+### Option 2: Install from local clone
 
 ```bash
-claude plugin install https://github.com/laiyijie/OhMyAICodingToolbox --plugin ohmy
+git clone https://github.com/laiyijie/OhMyAICodingToolbox.git
+```
+
+Then inside Claude Code:
+
+```
+/plugin marketplace add ./OhMyAICodingToolbox
+/plugin install ohmy@ohmy-toolbox
 ```
 
 ## Usage
